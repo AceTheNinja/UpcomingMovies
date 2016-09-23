@@ -11,16 +11,14 @@
 </head>
 <body ng-cloak>
     <div data-ng-controller="mainController as main">
-        <div class ="row" ng-repeat="result in data.results track by $index" ng-if="$index % 3 == 0">
-            <div class="col-xs-4" ng-repeat="i in [$index,$index+1,$index+2]" ng-if="data.results[i]!=null">
+        <div class ="row" ng-repeat="result in data.results track by $index">
                 <a data-toggle="modal" href="#myModal">
-                    <figure id="{{data.results[i].id}}" ng-click="movData(data.results[i].id)">
-                            <img class="img-thumbnail" ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{data.results[i].poster_path}}" alt="NA"/>
-                            {{data.results[i].title}}
+                    <figure id="{{result.id}}" ng-click="movData(result.id)">
+                            <img class="img-thumbnail" ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{result.poster_path}}" alt="NA"/>
+                            {{result.title}}
                     </figure>
                 </a>
-            </div>
-            </div>
+        </div>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
