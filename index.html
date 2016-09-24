@@ -12,12 +12,12 @@
 </head>
 <body ng-app="TMDB" ng-cloak>
 <div ng-controller="mainController" class="container">
-        <span class="col-md-3" ng-repeat="result in data.results track by $index">
+        <span class="col-md-3" ng-repeat="result in data.results">
                 <a data-toggle="modal" href="#myModal" id="{{result.id}}" ng-click="movData(result.id)">
                     <img class="img-thumbnail"
                          ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{result.poster_path}}" alt="NA"
-                         onerror="this.onerror=null;this.src='img/NA.jpg';"/><br/>
-                    {{result.title}}
+                         onerror="this.onerror=null;this.src='img/NA.jpg';"/><br/>{{result.title}}<br/>
+                    <span id="fadey">{{result.release_date | date}}</span>
                     <br/><br/>
                 </a>
         </span>

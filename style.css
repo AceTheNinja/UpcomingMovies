@@ -1,6 +1,33 @@
 .container {
-    width: 100%;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col-md-3 {
+    padding: 2%;
+}
+
+body {
+    background-color: black;
+}
+
+a {
+    font-family: Ubuntu;
+    color: white;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: blink;
+}
+
+#fadey {
+    color: grey;
+}
+
+#fadey:hover {
+    color: blue;
 }
