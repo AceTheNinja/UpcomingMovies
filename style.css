@@ -1,13 +1,13 @@
 .container {
-    max-width: 100%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-left: auto;
     margin-right: auto;
 }
 
-.col-md-3 {
-    padding: 2%;
+.co {
+    padding: 1%;
 }
 
 body {

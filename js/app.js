@@ -14,4 +14,8 @@ app.controller('mainController', ['$scope', '$http', function ($scope, $http) {
 
             });
     };
+
+    $scope.clear = function () {
+        $scope.movie = [];
+    };
 }]);
