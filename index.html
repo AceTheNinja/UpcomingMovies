@@ -9,55 +9,67 @@
     <meta charset="utf-8"/>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="js/jsfile.js"></script>
 </head>
-<body ng-app="TMDB">
-<div ng-controller="mainController" class="container">
-    <div class="col-md-2" ng-repeat="result in data.results">
+<body ng-app="TMDB" onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+
+<div ng-controller="mainController" class="container" style="display:none;" id="myDiv">
+    <div class="col-md-3" ng-repeat="result in data.results">
         <a data-toggle="modal" href="#myModal" id="{{result.id}}" ng-click="movData(result.id)">
             <img class="img-thumbnail" ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{result.poster_path}}"
                  alt="NA" onerror="this.onerror=null;this.src='img/NA.jpg';"/><br/>{{result.title}}<br/>
-                    <span id="fadey">{{result.release_date | date}}</span>
-                    <br/><br/>
-                </a>
+            <span id="fadey">{{result.release_date | date}}</span>
+            <br/><br/>
+        </a>
     </div>
+
+    <div style="text-align: center">
+        <ul class="pagination">
+            <li ng-repeat="t in getTimes(data.total_pages + 1) track by $index" ng-click="movieget($index)"
+                onclick="myFunction()" ng-if="$index!=0"><a href="#myDiv">{{$index}}</a></li>
+        </ul>
+    </div>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-cloak>
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{movie.title}}</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"
-                                         onerror="this.onerror=null;this.src='img/NA.jpg';"/>
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{movie.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <img ng-src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/{{movie.poster_path}}"
+                                     onerror="this.onerror=null;this.src='img/NA.jpg';"/>
+                            </div>
+                            <div class="col-xs-6">
+                                <b>{{movie.tagline}}</b><br/><br/>
+                                <b>Overview :</b><br/>
+                                {{movie.overview}}<br/><br/>
+                                <b>Genres :</b>
+                                <div ng-repeat="genre in movie.genres">
+                                    {{genre.name}}
                                 </div>
-                                <div class="col-xs-6">
-                                    <b>{{movie.tagline}}</b><br /><br />
-                                    <b>Overview :</b><br />
-                                        {{movie.overview}}<br /><br />
-                                    <b>Genres :</b>
-                                    <div ng-repeat="genre in movie.genres">
-                                        {{genre.name}}
-                                    </div>
-                                    <br /><br />
-                                    <b>Rating :</b>
-                                    {{movie.vote_average}}<br /><br />
-                                </div>
+                                <br/><br/>
+                                <b>Rating :</b>
+                                {{movie.vote_average}}<br/><br/>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close
-                        </button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    
+</div>
 </body>
 </html>      
